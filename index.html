@@ -1,43 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Секретное сообщение</title>
+
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: pink;
+  margin: 0;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  font-family: Arial;
+  background:
+    radial-gradient(circle at 20% 20%, #30134f 0, transparent 35%),
+    radial-gradient(circle at 80% 80%, #142b4f 0, transparent 35%),
+    #080912;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
 }
+
 .window {
-  background: #ff8ac5;
-  border: 3px solid #8b003f;
-  width: 300px;
+  width: 90%;
+  max-width: 390px;
+  background: rgba(20, 21, 35, 0.94);
+  border: 1px solid #5e5b91;
+  border-radius: 14px;
+  box-shadow: 0 0 40px rgba(120, 80, 255, .25);
+  overflow: hidden;
+  animation: appear .8s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.top {
+  padding: 13px 16px;
+  background: #171827;
+  border-bottom: 1px solid #33344c;
+  font-size: 14px;
+  color: #aaa9c4;
+}
+
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ff5f7a;
+  margin-right: 6px;
+}
+
+.content {
+  padding: 35px 22px;
   text-align: center;
 }
-.title {
-  background: #a00045;
-  color: white;
-  padding: 6px;
-  text-align: left;
+
+.lock {
+  font-size: 45px;
+  margin-bottom: 15px;
+  animation: pulse 1.5s infinite;
 }
-.text {
-  font-size: 24px;
-  padding: 35px 10px;
+
+@keyframes pulse {
+  50% { transform: scale(1.12); }
 }
+
+h1 {
+  font-size: 25px;
+  margin: 10px 0;
+}
+
+.subtitle {
+  color: #9999b5;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.message {
+  min-height: 70px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #ffb8d2;
+}
+
 button {
-  padding: 8px 30px;
-  margin-bottom: 20px;
+  margin-top: 25px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #ff477e, #a855f7);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(255, 71, 126, .25);
+  transition: .2s;
+}
+
+button:active {
+  transform: scale(.94);
+}
+
+#love {
+  display: none;
+  animation: appear .7s ease;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  font-size: 20px;
+  animation: float 5s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <div class="window">
-  <div class="title">Напоминание</div>
-  <div class="text">💗 Я люблю тебя</div>
-  <button onclick="alert('🥰')">OK</button>
+
+  <div class="top">
+    <span class="dot"></span>
+    Секретное сообщение
+  </div>
+
+  <div class="content">
+
+    <div class="lock">🔐</div>
+
+    <h1>У тебя новое сообщение</h1>
+
+    <div class="subtitle">
+      Доступно только одному человеку
+    </div>
+
+    <div id="typing" class="message"></div>
+
+    <button onclick="showLove()">Открыть сообщение</button>
+
+    <div id="love">
+      <div style="font-size:50px;">❤️</div>
+      <h1>Я люблю тебя</h1>
+      <p style="color:#aaa9c4;">
+        Просто хотел, чтобы ты это знала.
+      </p>
+    </div>
+
+  </div>
 </div>
+
+<script>
+
+const text = "Кажется, здесь есть кое-что, что я давно хотел сказать...";
+let i = 0;
+
+function typeText() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeText, 45);
+  }
+}
+
+typeText();
+
+function showLove() {
+
+  document.getElementById("typing").style.display = "none";
+  document.querySelector("button").style.display = "none";
+  document.getElementById("love").style.display = "block";
+
+  for (let i = 0; i < 18; i++) {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+    heart.innerHTML = Math.random() > .5 ? "❤️" : "💗";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDelay = Math.random() * 1.5 + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }
+}
+
+</script>
+
 </body>
 </html>
