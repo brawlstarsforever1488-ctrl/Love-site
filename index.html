@@ -3,209 +3,1116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Секретное сообщение</title>
+
+<title>Для [Тинатина] ❤️</title>
 
 <style>
-* {
-  box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background:
-    radial-gradient(circle at 20% 20%, #30134f 0, transparent 35%),
-    radial-gradient(circle at 80% 80%, #142b4f 0, transparent 35%),
-    #080912;
-  font-family: Arial, sans-serif;
-  color: white;
-  overflow: hidden;
+html{
+    scroll-behavior:smooth;
 }
 
-.window {
-  width: 90%;
-  max-width: 390px;
-  background: rgba(20, 21, 35, 0.94);
-  border: 1px solid #5e5b91;
-  border-radius: 14px;
-  box-shadow: 0 0 40px rgba(120, 80, 255, .25);
-  overflow: hidden;
-  animation: appear .8s ease;
+body{
+    font-family:Arial,sans-serif;
+    background:#050511;
+    color:white;
+    overflow-x:hidden;
 }
 
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: scale(.85);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+/* ФОН */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 15% 20%,#48206455,transparent 35%),
+    radial-gradient(circle at 85% 70%,#76234c44,transparent 35%),
+    radial-gradient(circle at 50% 100%,#1b3b7044,transparent 40%);
+    z-index:-5;
 }
 
-.top {
-  padding: 13px 16px;
-  background: #171827;
-  border-bottom: 1px solid #33344c;
-  font-size: 14px;
-  color: #aaa9c4;
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-4;
 }
 
-.dot {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #ff5f7a;
-  margin-right: 6px;
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    opacity:.6;
+    animation:twinkle 3s infinite;
 }
 
-.content {
-  padding: 35px 22px;
-  text-align: center;
+@keyframes twinkle{
+    0%,100%{opacity:.15}
+    50%{opacity:1}
 }
 
-.lock {
-  font-size: 45px;
-  margin-bottom: 15px;
-  animation: pulse 1.5s infinite;
+/* НАВИГАЦИЯ */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:15px 22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#050511aa;
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #ffffff12;
+    z-index:100;
 }
 
-@keyframes pulse {
-  50% { transform: scale(1.12); }
+.logo{
+    color:#ff8fb9;
+    font-weight:bold;
+    letter-spacing:1px;
 }
 
-h1 {
-  font-size: 25px;
-  margin: 10px 0;
+nav button{
+    background:#ffffff08;
+    border:1px solid #ffffff18;
+    color:white;
+    padding:8px 13px;
+    border-radius:20px;
+    cursor:pointer;
 }
 
-.subtitle {
-  color: #9999b5;
-  font-size: 14px;
-  margin-bottom: 25px;
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:100px 20px 40px;
 }
 
-.message {
-  min-height: 70px;
-  font-size: 20px;
-  line-height: 1.5;
-  color: #ffb8d2;
+.small{
+    color:#9290a6;
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:20px;
 }
 
-button {
-  margin-top: 25px;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 9px;
-  background: linear-gradient(135deg, #ff477e, #a855f7);
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 5px 20px rgba(255, 71, 126, .25);
-  transition: .2s;
+.hero h1{
+    font-size:clamp(48px,11vw,100px);
+    background:linear-gradient(90deg,#ff8dbb,#d39aff,#8bbcff);
+    -webkit-background-clip:text;
+    color:transparent;
+    margin-bottom:20px;
 }
 
-button:active {
-  transform: scale(.94);
+.hero p{
+    max-width:650px;
+    color:#aaa8bb;
+    font-size:17px;
+    line-height:1.8;
 }
 
-#love {
-  display: none;
-  animation: appear .7s ease;
+.mainButton{
+    margin-top:35px;
+    border:none;
+    padding:15px 34px;
+    border-radius:30px;
+    background:linear-gradient(90deg,#ff477e,#9858ff);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 0 30px #ff477e33;
+    transition:.3s;
 }
 
-.heart {
-  position: fixed;
-  bottom: -30px;
-  font-size: 20px;
-  animation: float 5s linear forwards;
-  pointer-events: none;
+.mainButton:hover{
+    transform:scale(1.06);
+    box-shadow:0 0 45px #ff477e66;
 }
 
-@keyframes float {
-  to {
-    transform: translateY(-110vh) rotate(360deg);
-    opacity: 0;
-  }
+.scroll{
+    margin-top:55px;
+    color:#6e6c80;
+    animation:bounce 2s infinite;
 }
+
+@keyframes bounce{
+    50%{transform:translateY(10px)}
+}
+
+/* СЕКЦИИ */
+
+section{
+    max-width:900px;
+    margin:auto;
+    padding:110px 22px;
+}
+
+.sectionTitle{
+    text-align:center;
+    font-size:36px;
+    margin-bottom:18px;
+}
+
+.sectionSubtitle{
+    text-align:center;
+    color:#858296;
+    margin-bottom:55px;
+}
+
+/* КАРТОЧКИ */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#ffffff07;
+    border:1px solid #ffffff12;
+    padding:30px;
+    border-radius:22px;
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#ff7eaa55;
+}
+
+.cardIcon{
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#9997ab;
+    line-height:1.7;
+}
+
+/* ИСТОРИЯ */
+
+.story{
+    border-left:2px solid #ff6f9d55;
+    padding-left:30px;
+}
+
+.storyItem{
+    margin-bottom:50px;
+    position:relative;
+}
+
+.storyItem::before{
+    content:"";
+    position:absolute;
+    width:12px;
+    height:12px;
+    background:#ff6f9d;
+    border-radius:50%;
+    left:-37px;
+    top:5px;
+    box-shadow:0 0 15px #ff6f9d;
+}
+
+.storyItem h3{
+    color:#ff9ebe;
+    margin-bottom:10px;
+}
+
+.storyItem p{
+    color:#aaa8ba;
+    line-height:1.8;
+}
+
+/* ЦИТАТА */
+
+.quote{
+    text-align:center;
+    padding:60px 25px;
+    background:#ffffff07;
+    border:1px solid #ffffff12;
+    border-radius:25px;
+}
+
+.quoteText{
+    font-size:25px;
+    line-height:1.6;
+}
+
+.quoteAuthor{
+    margin-top:20px;
+    color:#ff91b5;
+}
+
+/* СЕКРЕТ */
+
+.secret{
+    text-align:center;
+}
+
+.lock{
+    font-size:75px;
+    margin-bottom:20px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    50%{transform:scale(1.1)}
+}
+
+.secretBox{
+    display:none;
+    margin-top:30px;
+    padding:35px;
+    background:#ff477e0b;
+    border:1px solid #ff477e33;
+    border-radius:20px;
+    animation:appear .7s;
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* БОЛЬШОЙ ТЕКСТ */
+
+.bigText{
+    font-size:18px;
+    line-height:2;
+    color:#c2bfd0;
+}
+
+/* ВОПРОС */
+
+.question{
+    text-align:center;
+    padding:130px 20px;
+    max-width:850px;
+    margin:auto;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.questionHeart{
+    font-size:80px;
+    animation:heartbeat 1.3s infinite;
+}
+
+@keyframes heartbeat{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.15);
+    }
+}
+
+.question h2{
+    font-size:clamp(38px,8vw,65px);
+    margin:25px 0 15px;
+    background:linear-gradient(90deg,#ff8dbb,#d69aff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.question p{
+    color:#aaa8ba;
+    font-size:17px;
+    line-height:1.7;
+}
+
+.question h3{
+    font-size:26px;
+    margin:35px 0;
+}
+
+.answers{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.answers button{
+    border:none;
+    padding:16px 38px;
+    border-radius:30px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.yes{
+    background:linear-gradient(90deg,#ff3d79,#a855f7);
+    color:white;
+    box-shadow:0 0 30px #ff477e55;
+}
+
+.yes:hover{
+    transform:scale(1.12);
+}
+
+.no{
+    background:#ffffff0d;
+    color:#aaa;
+    border:1px solid #ffffff20 !important;
+}
+
+.no:hover{
+    transform:scale(.96);
+}
+
+#answer{
+    margin-top:35px;
+    font-size:24px;
+    color:#ff9ebe;
+    min-height:40px;
+}
+
+/* ФИНАЛ */
+
+.final{
+    display:none;
+    min-height:100vh;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px 20px;
+}
+
+.finalBox{
+    max-width:700px;
+}
+
+.finalBox .bigHeart{
+    font-size:100px;
+    animation:heartbeat 1s infinite;
+}
+
+.finalBox h2{
+    font-size:clamp(40px,8vw,70px);
+    margin:20px 0;
+    background:linear-gradient(90deg,#ff8dbb,#d99cff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.finalBox p{
+    color:#aaa8bb;
+    font-size:18px;
+    line-height:1.9;
+}
+
+/* ЛЕТАЮЩИЕ СЕРДЦА */
+
+.floatingHeart{
+    position:fixed;
+    bottom:-50px;
+    pointer-events:none;
+    animation:floatUp linear forwards;
+    z-index:200;
+}
+
+@keyframes floatUp{
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* ВЗРЫВ СЕРДЕЦ */
+
+.explosionHeart{
+    position:fixed;
+    left:50%;
+    top:50%;
+    font-size:30px;
+    pointer-events:none;
+    z-index:300;
+    animation:explode 2s ease-out forwards;
+}
+
+@keyframes explode{
+    to{
+        transform:
+        translate(
+            calc((var(--x) - .5) * 100vw),
+            calc((var(--y) - .5) * 100vh)
+        )
+        rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* МОБИЛЬНЫЙ */
+
+@media(max-width:600px){
+
+    nav{
+        padding:12px 15px;
+    }
+
+    .logo{
+        font-size:13px;
+    }
+
+    section{
+        padding:85px 18px;
+    }
+
+    .sectionTitle{
+        font-size:30px;
+    }
+
+    .quoteText{
+        font-size:21px;
+    }
+
+    .question{
+        padding:100px 18px;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="window">
+<div class="stars" id="stars"></div>
 
-  <div class="top">
-    <span class="dot"></span>
-    Секретное сообщение
-  </div>
+<nav>
 
-  <div class="content">
-
-    <div class="lock">🔐</div>
-
-    <h1>У тебя новое сообщение от Муслима</h1>
-
-    <div class="subtitle">
-      Доступно только одному человеку
+    <div class="logo">
+        MUSLIM • PRIVATE
     </div>
 
-    <div id="typing" class="message"></div>
+    <button onclick="createHearts()">
+        ❤️
+    </button>
 
-    <button onclick="showLove()">Открыть сообщение</button>
+</nav>
 
-    <div id="love">
-      <div style="font-size:50px;">❤️</div>
-      <h1>Я люблю тебя</h1>
-      <p style="color:#aaa9c4;">
-        Просто хотел, чтобы ты это знала.
-      </p>
+
+<!-- ГЛАВНЫЙ ЭКРАН -->
+
+<div class="hero">
+
+    <div class="small">
+        личная страница
     </div>
 
-  </div>
+    <h1>[Тина]</h1>
+
+    <p>
+        Если ты открыла эту страницу,
+        значит я наконец решился сказать
+        то, что давно хотел сказать.
+    </p>
+
+    <button class="mainButton"
+    onclick="document.getElementById('story').scrollIntoView()">
+
+        Открыть ↓
+
+    </button>
+
+    <div class="scroll">
+        здесь начинается кое-что важное
+    </div>
+
 </div>
+
+
+<!-- ИСТОРИЯ -->
+
+<section id="story">
+
+    <div class="sectionTitle">
+        Почему я сделал это?
+    </div>
+
+    <div class="sectionSubtitle">
+        Потому что одного сообщения мне показалось мало.
+    </div>
+
+    <div class="story">
+
+        <div class="storyItem">
+
+            <h3>Сначала я хотел написать пару слов</h3>
+
+            <p>
+                Просто открыть чат, написать сообщение
+                и отправить. Всё.
+                Но чем больше я думал,
+                тем сильнее понимал,
+                что хочу сделать что-то особенное.
+            </p>
+
+        </div>
+
+        <div class="storyItem">
+
+            <h3>Потом появился этот сайт</h3>
+
+            <p>
+                Я решил сделать отдельное место,
+                где можно спокойно сказать всё,
+                что иногда сложно сказать человеку
+                прямо в глаза.
+            </p>
+
+        </div>
+
+        <div class="storyItem">
+
+            <h3>И вот ты здесь</h3>
+
+            <p>
+                Возможно, ты сейчас улыбаешься.
+                Возможно, думаешь:
+                «Что вообще происходит?»
+                😄
+                Но я правда старался.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- КАРТОЧКИ -->
+
+<section>
+
+    <div class="sectionTitle">
+        Несколько вещей
+    </div>
+
+    <div class="sectionSubtitle">
+        Которые я хотел сказать именно тебе.
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="cardIcon">
+                🌙
+            </div>
+
+            <h3>
+                Ты особенная
+            </h3>
+
+            <p>
+                Среди большого количества людей
+                именно ты каким-то образом
+                стала для меня человеком,
+                которого я не хочу просто забыть.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="cardIcon">
+                ✨
+            </div>
+
+            <h3>
+                Мне нравится ты
+            </h3>
+
+            <p>
+                Не какой-то идеальный образ.
+                А настоящая ты —
+                со своим характером,
+                эмоциями и привычками.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="cardIcon">
+                ❤️
+            </div>
+
+            <h3>
+                Я серьёзно
+            </h3>
+
+            <p>
+                Это не прикол и не случайная
+                фраза, которую я решил написать.
+                Я действительно так чувствую.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ЦИТАТА -->
+
+<section>
+
+    <div class="quote">
+
+        <div class="quoteText">
+
+            «Иногда человек появляется
+            совершенно неожиданно,
+            а потом становится тем,
+            о ком ты думаешь каждый день.»
+
+        </div>
+
+        <div class="quoteAuthor">
+            — Муслим
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- СЕКРЕТ -->
+
+<section class="secret">
+
+    <div class="sectionTitle">
+        Я кое-что спрятал
+    </div>
+
+    <div class="sectionSubtitle">
+        Нажми, если действительно хочешь узнать.
+    </div>
+
+    <div class="lock">
+        🔐
+    </div>
+
+    <button class="mainButton"
+    onclick="openSecret()">
+
+        Открыть секрет
+
+    </button>
+
+    <div class="secretBox" id="secretBox">
+
+        <h2>
+            Я влюбился.
+        </h2>
+
+        <br>
+
+        <p class="bigText">
+
+            Вот.
+            Я это сказал.
+
+            <br><br>
+
+            Наверное, именно это
+            я и пытался сказать
+            всё это время.
+
+            <br><br>
+
+            ❤️
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- МОИ МЫСЛИ -->
+
+<section>
+
+    <div class="sectionTitle">
+        Если бы я сказал это лично
+    </div>
+
+    <div class="sectionSubtitle">
+        Наверное, получилось бы примерно так.
+    </div>
+
+    <div class="card">
+
+        <p class="bigText">
+
+            Я не знаю, какой будет твоя реакция.
+
+            <br><br>
+
+            Возможно, ты удивишься.
+            Возможно, засмеёшься.
+            Возможно, тебе будет немного неловко.
+
+            <br><br>
+
+            И я понимаю это.
+
+            <br><br>
+
+            Я не хочу заставлять тебя
+            отвечать определённым образом.
+
+            <br><br>
+
+            Мне просто хотелось,
+            чтобы ты знала правду.
+
+            <br><br>
+
+            Ты стала человеком,
+            который мне действительно нравится.
+
+            <br><br>
+
+            И поэтому я сделал
+            всё это именно для тебя.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ФИНАЛЬНЫЙ ВОПРОС -->
+
+<div class="question">
+
+    <div class="questionHeart">
+        💗
+    </div>
+
+    <div class="small">
+        последний вопрос
+    </div>
+
+    <h2>
+        [Тинатин]...
+    </h2>
+
+    <p>
+        После всего, что я хотел тебе сказать,
+        остался только один вопрос.
+    </p>
+
+    <h3>
+        Будешь со мной? ❤️
+    </h3>
+
+    <div class="answers">
+
+        <button class="yes"
+        onclick="yesAnswer()">
+
+            ДА ❤️
+
+        </button>
+
+
+        <button class="no"
+        onclick="noAnswer()">
+
+            НЕТ
+
+        </button>
+
+    </div>
+
+    <div id="answer"></div>
+
+</div>
+
+
+<!-- ПОЯВЛЯЕТСЯ ПОСЛЕ ДА -->
+
+<div class="final" id="final">
+
+    <div class="finalBox">
+
+        <div class="bigHeart">
+            ❤️
+        </div>
+
+        <div class="small">
+            Я НЕ МОГУ ПОВЕРИТЬ
+        </div>
+
+        <h2>
+            ЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕ! ❤️
+        </h2>
+
+        <p>
+
+            Кажется, сегодня
+            у одного Муслима
+            самый счастливый день.
+
+            <br><br>
+
+            Спасибо тебе.
+
+            <br><br>
+
+            Я правда очень рад.
+
+            <br><br>
+
+            ❤️
+
+        </p>
+
+    </div>
+
+</div>
+
 
 <script>
 
-const text = "Кажется, здесь есть кое-что, что я давно хотел сказать...";
-let i = 0;
+/* ЗВЁЗДЫ */
 
-function typeText() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeText, 45);
-  }
+const stars =
+document.getElementById("stars");
+
+for(let i=0;i<120;i++){
+
+    const star=
+    document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=
+    Math.random()*100+"%";
+
+    star.style.top=
+    Math.random()*100+"%";
+
+    star.style.animationDelay=
+    Math.random()*3+"s";
+
+    stars.appendChild(star);
 }
 
-typeText();
 
-function showLove() {
+/* СЕКРЕТ */
 
-  document.getElementById("typing").style.display = "none";
-  document.querySelector("button").style.display = "none";
-  document.getElementById("love").style.display = "block";
+function openSecret(){
 
-  for (let i = 0; i < 18; i++) {
+    const box=
+    document.getElementById("secretBox");
 
-    const heart = document.createElement("div");
+    box.style.display="block";
 
-    heart.className = "heart";
-    heart.innerHTML = Math.random() > .5 ? "❤️" : "💗";
+    createHearts();
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDelay = Math.random() * 1.5 + "s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 6000);
-  }
 }
+
+
+/* СЕРДЦА */
+
+function createHearts(){
+
+    for(let i=0;i<25;i++){
+
+        const heart=
+        document.createElement("div");
+
+        heart.className=
+        "floatingHeart";
+
+        const list=[
+            "❤️",
+            "💗",
+            "💖",
+            "💕",
+            "💞"
+        ];
+
+        heart.innerHTML=
+        list[
+            Math.floor(
+                Math.random()*list.length
+            )
+        ];
+
+        heart.style.left=
+        Math.random()*100+"vw";
+
+        heart.style.fontSize=
+        15+Math.random()*30+"px";
+
+        heart.style.animationDuration=
+        3+Math.random()*4+"s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },7000);
+
+    }
+
+}
+
+
+/* НЕТ */
+
+function noAnswer(){
+
+    const answer=
+    document.getElementById("answer");
+
+    answer.innerHTML=
+    "Хорошо ❤️ Спасибо, что честно ответила.";
+
+}
+
+
+/* ДА */
+
+function yesAnswer(){
+
+    const answer=
+    document.getElementById("answer");
+
+    answer.innerHTML=
+    "ЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕ ❤️😭❤️";
+
+    createHearts();
+
+    createExplosion();
+
+    setTimeout(createHearts,500);
+    setTimeout(createHearts,1200);
+    setTimeout(createHearts,1900);
+
+    setTimeout(()=>{
+
+        document.querySelector(
+            ".question"
+        ).style.display="none";
+
+        document.getElementById(
+            "final"
+        ).style.display="flex";
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    },2500);
+
+}
+
+
+/* ВЗРЫВ СЕРДЕЦ */
+
+function createExplosion(){
+
+    for(let i=0;i<60;i++){
+
+        const heart=
+        document.createElement("div");
+
+        heart.className=
+        "explosionHeart";
+
+        const list=[
+            "❤️",
+            "💗",
+            "💖",
+            "💕",
+            "💞",
+            "💘"
+        ];
+
+        heart.innerHTML=
+        list[
+            Math.floor(
+                Math.random()*list.length
+            )
+        ];
+
+        heart.style.setProperty(
+            "--x",
+            Math.random()
+        );
+
+        heart.style.setProperty(
+            "--y",
+            Math.random()
+        );
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },2200);
+
+    }
+
+}
+
+
+/* СЛУЧАЙНЫЕ СЕРДЦА */
+
+setInterval(()=>{
+
+    if(Math.random()>.65){
+        createHearts();
+    }
+
+},15000);
 
 </script>
 
